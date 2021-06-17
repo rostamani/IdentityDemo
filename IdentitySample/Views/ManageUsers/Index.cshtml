@@ -1,0 +1,37 @@
+﻿@model List<IdentitySample.ViewModels.User.IndexViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Users</h1>
+@if (!Model.Any())
+{
+    <h3>
+        No user found!
+    </h3>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Username</td>
+                    <td>@item.Email</td>
+                    <td>
+                        <a asp-controller="ManageRoles" asp-action="Delete" asp-route-UserId="@item.UserId" class="btn btn-danger">Delete</a>
+                        <a asp-controller="ManageUsers" asp-action="Edit" asp-route-UserId="@item.UserId" class="btn btn-warning">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
